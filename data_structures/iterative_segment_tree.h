@@ -22,6 +22,6 @@ template<class T> struct IterativeSegmentTree{
         }
         if (!hasL) return ansR;
         if (!hasR) return ansL;
-        return merge(ansL, ansR);
+        return m_(ansL, ansR);
     }
 };
