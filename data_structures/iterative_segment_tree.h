@@ -1,6 +1,6 @@
-template<class T> struct IterativeSegmentTree{
+template<class T> struct iter_seg_tree{
     int n; vector<T> ST; T (*m_)(T, T);
-    IterativeSegmentTree(vector<T> &a,T(*m_)(T,T)):m_(m_){
+    iter_seg_tree(vector<T> &a,T(*m_)(T,T)):m_(m_){
         n = a.size(); ST.resize(n << 1);
         for (int i=n;i<(n<<1);i++)ST[i]=a[i-n];
         for (int i=n-1;i>0;i--)ST[i]=m_(ST[i<<1],ST[i<<1|1]);

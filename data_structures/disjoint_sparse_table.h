@@ -27,10 +27,10 @@ template<class T> struct disjoint_sp_tb{
     for (int half = 0; half < n; half ++)
       DST[0][half] = a[half];
   }
-  T query(int l, int r){
+  T query(int l, int r){ // [l, r]
     int h = fLog2[l ^ r] + 1;
     if (l == r) return DST[0][l];
     if (r & ((1 << (h - 1)) - 1)) return m_(DST[h][l], DST[h][r]);
     return DST[h][l];
   }
-};
+}; // Give initial vector and merge function
