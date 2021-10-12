@@ -13,17 +13,16 @@ template<class T> struct disjoint_sp_tb{
     n=a.size(); x=cLog2[n];
     DST.resize(x + 1, vector<T>(n));
     for (int h = 1; h <= x; h ++){
-      int s = (1 << h);
-      for (int half = 0; half < n - (s >> 1); half += s){
-        int R = half + s;
-        int M = half + (s >> 1);
-        DST[h][M] = a[M];
+    	int s = (1 << h);
+    	for (int half = 0; half < n - (s >> 1); half += s){
+    		int r = half + s, m = half + (s >> 1);
+    		DST[h][m] = a[m];
         for (int i = M - 1; i >= half; i --)
           DST[h][i] = m_(a[i], DST[h][i + 1]);
         if (M + 1 < n) DST[h][M + 1] = a[M + 1];
         for (int i = M + 2; i < n and i < R; i ++)
           DST[h][i] = m_(DST[h][i - 1], a[i]);
-      }
+    	}
     }
     for (int half = 0; half < n; half ++)
       DST[0][half] = a[half];
