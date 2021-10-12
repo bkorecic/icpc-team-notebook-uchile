@@ -2,10 +2,8 @@ template<class T> struct IterativeSegmentTree{
     int n; vector<T> ST; T (*m_)(T, T);
     IterativeSegmentTree(vector<T> &a,T(*m_)(T,T)):m_(m_){
         n = a.size(); ST.resize(n << 1);
-        for (int i = n; i < (n << 1); i ++)
-            ST[i] = a[i - n];
-        for (int i = n - 1; i > 0; i --)
-            ST[i] = m_(ST[i<<1], ST[i<<1|1]);
+        for (int i=n;i<(n<<1);i++)ST[i]=a[i-n];
+        for (int i=n-1;i>0;i--)ST[i]=m_(ST[i<<1],ST[i<<1|1]);
     }
     void update(int pos, T val){
         ST[pos += n] = val;
@@ -20,8 +18,7 @@ template<class T> struct IterativeSegmentTree{
             if (r & 1) 
                 ansR=(hasR?m_(ST[--r],ansR):ST[--r]),hasR=1;
         }
-        if (!hasL) return ansR;
-        if (!hasR) return ansL;
+        if (!hasL) return ansR; if (!hasR) return ansL;
         return m_(ansL, ansR);
     }
 };
