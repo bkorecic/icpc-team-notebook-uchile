@@ -1,2 +1,3 @@
-# icpc-team-notebook-uchile
-ICPC Team notebook with various implementations
+# Archived repository
+See https://github.com/progcompuch/team-notebook
+
